@@ -8,7 +8,7 @@ def test_check_guess(capsys, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
     guess_the_number.main()
     captured = capsys.readouterr()
-    assert "high" in captured.out or "low" in captured.out
+    assert re.search(r"high|low", captured.out, re.IGNORECASE)
 
 def test_play(capsys, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
