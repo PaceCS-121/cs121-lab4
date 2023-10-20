@@ -34,7 +34,7 @@ def test_leap_year_1999(capsys, monkeypatch):
 
 def test_leap_year_str(monkeypatch):
     # test that program works with a non valid input
-    inputs = "hello"
-    monkeypatch.setattr('builtins.input', lambda _: inputs)
+    inputs = iter(["hello", 2004])
+    monkeypatch.setattr('builtins.input', lambda _: next(inputs))
     leap_year.main()
     assert True
